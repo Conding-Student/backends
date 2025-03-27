@@ -2,6 +2,7 @@ package routes
 
 import (
 	//"intern_template_v1/controller"
+	controller "intern_template_v1/controller/Admin"
 	Usercontroller "intern_template_v1/controller/auth"
 	landlordcontroller "intern_template_v1/controller/landlord"
 	"intern_template_v1/middleware"
@@ -35,5 +36,7 @@ func AppRoutes(app *fiber.App) {
 	//app.Post("/addrentallisting", landlordcontroller.CreateApartment)
 	app.Post("/property/add", middleware.AuthMiddleware, landlordcontroller.CreateApartment)
 	app.Get("/property/get", middleware.AuthMiddleware, landlordcontroller.FetchApartmentsByLandlord)
+	app.Post("/admin/register", controller.RegisterAdmin)
+	app.Post("/admin/login", controller.LoginHandler)
 
 }
